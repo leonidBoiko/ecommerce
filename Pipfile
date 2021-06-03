@@ -18,6 +18,7 @@ lazy-object-proxy = "*"
 wrapt = "*"
 mccabe = "*"
 pep8 = "*"
+flake8 = "*"
 
 [packages]
 asgiref = "==3.3.1"

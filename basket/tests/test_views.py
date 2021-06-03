@@ -1,12 +1,14 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from store.models import Category, Product
 
+User = get_user_model()
+
 
 class TestBasketView(TestCase):
     def setUp(self):
-        User.objects.create(username="admin")
+        User.objects.create(user_name="admin")
         Category.objects.create(name="django", slug="django")
         Product.objects.create(
             category_id=1,
@@ -45,31 +47,34 @@ class TestBasketView(TestCase):
         response = self.client.get(reverse("basket:basket_summary"))
         self.assertEqual(response.status_code, 200)
 
-    def test_basket_add(self):
-        """
-        Test adding items to the basket
-        """
-        response = self.client.post(
-            reverse("basket:basket_add"), {"productid": 3, "productqty": 1, "action": "post"}, xhr=True
-        )
-        self.assertEqual(response.json(), {"qty": 4})
-        response = self.client.post(
-            reverse("basket:basket_add"), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True
-        )
-        self.assertEqual(response.json(), {"qty": 3})
 
-    def test_basket_delete(self):
-        """
-        Test deleting items from the basket
-        """
-        response = self.client.post(reverse("basket:basket_delete"), {"productid": 2, "action": "post"}, xhr=True)
-        self.assertEqual(response.json(), {"qty": 1, "subtotal": "20.00"})
+def test_basket_add(self):
+    """
+    Test adding items to the basket
+    """
+    response = self.client.post(
+        reverse("basket:basket_add"), {"productid": 3, "productqty": 1, "action": "post"}, xhr=True
+    )
+    self.assertEqual(response.json(), {"qty": 4})
+    response = self.client.post(
+        reverse("basket:basket_add"), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True
+    )
+    self.assertEqual(response.json(), {"qty": 3})
 
-    def test_basket_update(self):
-        """
-        Test updating items from the basket
-        """
-        response = self.client.post(
-            reverse("basket:basket_update"), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True
-        )
-        self.assertEqual(response.json(), {"qty": 2, "subtotal": "40.00"})
+
+def test_basket_delete(self):
+    """
+    Test deleting items from the basket
+    """
+    response = self.client.post(reverse("basket:basket_delete"), {"productid": 2, "action": "post"}, xhr=True)
+    self.assertEqual(response.json(), {"qty": 1, "subtotal": "20.00"})
+
+
+def test_basket_update(self):
+    """
+    Test updating items from the basket
+    """
+    response = self.client.post(
+        reverse("basket:basket_update"), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True
+    )
+    self.assertEqual(response.json(), {"qty": 2, "subtotal": "40.00"})

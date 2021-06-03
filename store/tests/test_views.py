@@ -2,12 +2,14 @@ from importlib import import_module
 from unittest import skip
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 from django.test import Client, TestCase
 from django.urls import reverse
 from store.models import Category, Product
 from store.views import product_all
+
+User = get_user_model()
 
 
 @skip("demonstrating skipping")
@@ -19,7 +21,7 @@ class TestSkip(TestCase):
 class TestViewResponses(TestCase):
     def setUp(self):
         self.c = Client()
-        User.objects.create(username="admin")
+        User.objects.create(user_name="admin")
         Category.objects.create(name="django", slug="django")
         Product.objects.create(
             category_id=1,
