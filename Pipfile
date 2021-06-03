@@ -1,0 +1,37 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+coverage = "*"
+isort = "*"
+django-extensions = "*"
+werkzeug = "*"
+autopep8 = "*"
+pycodestyle = "*"
+toml = "*"
+pylint = "*"
+astroid = "*"
+lazy-object-proxy = "*"
+wrapt = "*"
+mccabe = "*"
+pep8 = "*"
+
+[packages]
+asgiref = "==3.3.1"
+django-cors-headers = "==3.5.0"
+djangorestframework = "==3.12.2"
+pytz = "==2020.4"
+sqlparse = "==0.4.1"
+Django = "==3.1.4"
+pillow = "*"
+six = "*"
+django-countries = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+tests = "coverage run --omit='*/ecommerce-D8NGcmZM/*' manage.py test"
