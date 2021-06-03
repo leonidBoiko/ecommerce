@@ -35,10 +35,10 @@ jobs:
         flake8
     - name: Coverage report
       run: |
-        pipenv shell
-        pip install coverage
-        coverage run manage.py test
-        coverage report
-    - name: Django Testing
-      run: |
         python3 manage.py test
+        # pipenv shell
+        # pip install coverage
+        # coverage run manage.py test
+        # coverage report
+    # - name: Django Testing
+    #   run: |
