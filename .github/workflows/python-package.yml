@@ -1,4 +1,4 @@
-name: Django ecommerce
+name: Django-E-commerce
 
 on:
   push:
