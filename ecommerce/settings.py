@@ -24,7 +24,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "store",
     "basket",
-    "account"
+    "account",
+    "payment",
+    "orders"
 ]
 
 if DEBUG:

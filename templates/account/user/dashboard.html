@@ -9,12 +9,12 @@
         </div>
         <div class="col-12 d-flex justify-content-between">
             <div>Manage your <b>orders</b> and personal details</div>
-            {% comment %} <div><a href="{% url "account:edit_details" %}">Change Details</a></div> {% endcomment %}
+            <div><a href="{% url "account:edit_details" %}">Change Details</a></div>
         </div>
         <hr />
     </div>
     <div class="container" style="max-width: 1000px">
-        {% comment %} {% for order in orders %}
+        {% for order in orders.items.all %}
         <div class="row g-3">
 
             <div class="col-12 bg-light p-3 d-flex justify-content-between">
@@ -73,7 +73,7 @@
                 {% endfor %}
             </div>
         </div>
-        {% endfor %} {% endcomment %}
+        {% endfor %}
     </div>
 </main>
 {% endblock %}
